@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/category', 'CategoryController@index')->name('admin.category');
+Route::get('/category/create', 'CategoryController@create')->name('admin.category.create');
+Route::post('/category/store', 'CategoryController@store')->name('admin.category.store');
+Route::delete('/category/{category}', 'CategoryController@destroy')->name('admin.category.delete');
+Route::get('/category/{category}/edit', 'CategoryController@edit')->name('admin.category.edit');
+Route::patch('/category/{category}', 'CategoryController@update')->name('admin.category.update');

@@ -57,7 +57,12 @@
             <a href="#" class="nav-link"><i class="mdi mdi-bookmark-plus-outline"></i>Score</a>
           </li>
         </ul>
-        <ul class="navbar-nav navbar-nav-right">          
+        <ul class="navbar-nav navbar-nav-right">
+          @guest('admin')
+          <li class="nav-item">
+              <a class="nav-link" href="{{route('admin.login')}}">{{ ucfirst(config('multiauth.prefix')) }} Login</a>
+          </li>
+          @else          
           <li class="nav-item dropdown d-none d-xl-inline-block">
             <a class="nav-link dropdown-toggle" id="UserDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
               <span class="mr-3">{{ auth('admin')->user()->name }}</span><img class="img-xs rounded-circle" src="{{ asset('images/faces/face1.jpg') }}" alt="Profile image">
@@ -69,7 +74,7 @@
                   <div class="py-3 px-4 d-flex align-items-center justify-content-center border-left border-right"><i class="mdi mdi-account-outline mr-0 text-gray"></i></div>
                   <div class="py-3 px-4 d-flex align-items-center justify-content-center"><i class="mdi mdi-alarm-check mr-0 text-gray"></i></div>
                 </div>
-              </a>
+              </a>              
               <a class="dropdown-item mt-2">
                 Manage Accounts
               </a>
@@ -98,7 +103,7 @@
     <div class="container-fluid page-body-wrapper">
      
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
+        <ul class="nav">           
           <li class="nav-item nav-profile">
             <div class="nav-link">
               <div class="profile-image"> <img src="{{ asset('images/faces/face1.jpg') }}" alt="image"/> <span class="online-status online"></span> </div>
@@ -108,13 +113,16 @@
               </div>             
             </div>
           </li>
+         
           <li class="nav-item"> <a class="nav-link" href="{{ route('admin.home') }}"> <img class="menu-icon" src="{{ asset('images/menu_icons/01.png') }}" alt="menu icon"> <span class="menu-title">Dashboard</span></a> </li>
           @admin('super')
             <li class="nav-item"> <a class="nav-link" href="{{ route('admin.roles') }}"> <img class="menu-icon" src="{{ asset('images/menu_icons/21.png') }}" alt="menu icon"> <span class="menu-title">Roles</span></a> </li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('admin.show') }}"> <img class="menu-icon" src="{{ asset('images/menu_icons/22.png') }}" alt="menu icon"> <span class="menu-title">{{ ucfirst(config('multiauth.prefix')) }}</span></a> </li>
           @endadmin
-          {{-- <li class="nav-item"> <a class="nav-link" href="{{ route('') }}"> <img class="menu-icon" src="{{ asset('images/menu_icons/23.png') }}" alt="menu icon"> <span class="menu-title">Products</span></a> </li> --}}
+          <li class="nav-item"> <a class="nav-link" href=""> <img class="menu-icon" src="{{ asset('images/menu_icons/25.png') }}" alt="menu icon"> <span class="menu-title">Products</span></a> </li>
+          <li class="nav-item"> <a class="nav-link" href="{{ route('admin.category') }}"> <img class="menu-icon" src="{{ asset('images/menu_icons/24.png') }}" alt="menu icon"> <span class="menu-title">Category</span></a> </li>
           
+          @endguest
         </ul>
       </nav>
       <!-- partial -->
@@ -178,6 +186,10 @@
   <script src="{{ asset('js/typeahead.js') }}"></script>
 
 
+  
+  @section('script')
+          
+  @show
 
  
 
