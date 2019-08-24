@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/category', 'CategoryController@index')->name('admin.category');
@@ -21,3 +21,7 @@ Route::post('/category/store', 'CategoryController@store')->name('admin.category
 Route::delete('/category/{category}', 'CategoryController@destroy')->name('admin.category.delete');
 Route::get('/category/{category}/edit', 'CategoryController@edit')->name('admin.category.edit');
 Route::patch('/category/{category}', 'CategoryController@update')->name('admin.category.update');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
